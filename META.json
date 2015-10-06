@@ -42,7 +42,7 @@
       },
       "runtime" : {
          "requires" : {
-            "perl" : "5.005"
+            "perl" : "5.008_001"
          }
       },
       "test" : {
@@ -63,6 +63,6 @@
          "web" : "https://github.com/kappa/IMAP-BodyStructure"
       }
    },
-   "version" : "1.01",
+   "version" : "1.02",
    "x_serialization_backend" : "JSON::PP version 2.27203"
 }

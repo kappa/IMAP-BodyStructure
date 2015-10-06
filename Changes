@@ -2,6 +2,9 @@ Revision history for Perl extension IMAP::BodyStructure.
 
 {{$NEXT}}
 
+1.02 2015-10-06T19:29:45Z
+	- Convert to Minilla, no functional change
+
 1.01
 	- INCOMPATIBLE CHANGE:
 		->part_at() with wrong part path now returns undef

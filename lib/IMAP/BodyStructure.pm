@@ -54,7 +54,7 @@ use 5.005;
 
 use vars qw/$VERSION/;
 
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 sub _get_envelope($\$);
 sub _get_bodystructure(\$;$$);
