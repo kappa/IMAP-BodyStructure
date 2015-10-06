@@ -1,0 +1,34 @@
+IMAP::BodyStructure version 0.95
+===============================
+
+An IMAP4-compatible IMAP server MUST include a full MIME-parser which
+parses the messages inside IMAP mailboxes and is accessible via
+BODYSTRUCTURE fetch item. This module provides a perl interface to
+parse the output of IMAP4 MIME-parser. Hope no one will have problems
+with parsing previous sentence.
+
+It is a rather straightforward m/\G.../gc-style parser and is
+therefore faster then the venerable Mail::IMAPClient::BodyStructure.
+
+This module does not contain IMAP4 client! You will need to employ one
+from CPAN, there are many.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Build.PL
+   perl Build
+   perl Build test
+   perl Build install
+
+DEPENDENCIES
+
+This module requires an IMAP client package to be of any use.
+
+COPYRIGHT AND LICENCE
+
+Licensed under Artistic license.
+
+Copyright (C) 2004-2005 Alex Kapranoff <kappa@rambler-co.ru>
+

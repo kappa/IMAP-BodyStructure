@@ -1,0 +1,8 @@
+Changes
+Build.PL
+Makefile.PL
+MANIFEST
+META.yml
+README
+lib/IMAP/BodyStructure.pm
+test.pl
