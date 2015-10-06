@@ -1,8 +1,6 @@
 package IMAP::BodyStructure;
 use strict;
 
-# $Id: BodyStructure.pm,v 1.17 2006/05/02 16:56:36 kappa Exp $
-
 =head1 NAME
 
 IMAP::BodyStructure - IMAP4-compatible BODYSTRUCTURE and ENVELOPE parser
@@ -54,13 +52,14 @@ use 5.005;
 
 use vars qw/$VERSION/;
 
-$VERSION = '1.02';
+$VERSION = '1.03';
 
 sub _get_envelope($\$);
 sub _get_bodystructure(\$;$$);
 sub _get_npairs(\$);
 sub _get_ndisp(\$);
 sub _get_nstring(\$);
+sub _get_lang(\$);
 
 =head2 METHODS
 
@@ -363,7 +362,7 @@ sub _get_bodystructure(\$;$$) {
         $bs->{type}      .= lc(_get_nstring($$str));
         $bs->{params}     = _get_npairs($$str);
         $bs->{disp}       = _get_ndisp($$str);
-        $bs->{lang}       = _get_nstring($$str);
+        $bs->{lang}       = _get_lang($$str);
         $bs->{loc}        = _get_nstring($$str);
     } else {
         $bs->{type}       = lc (_get_nstring($$str) . '/' . _get_nstring($$str));
@@ -387,7 +386,7 @@ sub _get_bodystructure(\$;$$) {
 
         $bs->{md5}  = _get_nstring($$str);
         $bs->{disp} = _get_ndisp($$str);
-        $bs->{lang} = _get_nstring($$str);
+        $bs->{lang} = _get_lang($$str);
         $bs->{loc}  = _get_nstring($$str);
     }
 
@@ -470,6 +469,31 @@ sub _get_nstring(\$) {
     }
 
     return 0;
+}
+
+sub _get_lang(\$) {
+    my $str = $_[0];
+
+    # body-fld-lang   = nstring / "(" string *(SP string) ")"
+
+    if ($$str =~ m/\G\s*\(/gc) {
+        my @a;
+        while ('fareva') {
+            my $data = _get_nstring($$str);
+            $data or last;
+
+            push @a, $data;
+        }
+
+        $$str =~ m/\G\s*\)/gc;
+        return \@a;
+    }
+
+    if (my $data = _get_nstring($$str)) {
+        return [$data];
+    }
+
+    return [];
 }
 
 sub _unescape {
@@ -733,6 +757,10 @@ Shouldn't be any, as this is a simple parser of a standard structure.
 =head1 AUTHOR
 
 Alex Kapranoff <alex@kapranoff.ru>
+
+=head1 ACKNOWLEDGMENTS
+
+Jonas Liljegren contributed support for multivalued "lang" items.
 
 =head1 COPYRIGHT AND LICENSE
 

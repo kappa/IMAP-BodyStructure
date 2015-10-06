@@ -2,7 +2,7 @@
 use strict;
 
 use Test::NoWarnings;
-use Test::More tests => 132;
+use Test::More tests => 134;
 
 BEGIN { use_ok('IMAP::BodyStructure'); }
 
@@ -49,11 +49,12 @@ is($bs->part_at('')->type, 'text/plain', 'simple part_at access 2');
 
 ok(!defined $bs->part_at('1.u1'), 'no UU-parts work in this module at all');
 
-$bs = IMAP::BodyStructure->new('("text" "plain" ("charset" "utf-8") NIL NIL "8bit" 75 4 NIL ("inline" ("filename" "tolower")) NIL)');
+$bs = IMAP::BodyStructure->new('("text" "plain" ("charset" "utf-8") NIL NIL "8bit" 75 4 NIL ("inline" ("filename" "tolower")) "en_US")');
 is($bs->{params}->{charset}, 'utf-8', 'body charset');
 is($bs->charset, 'utf-8', 'oop body charset');
 is($bs->{disp}->[0], 'inline', 'body disp');
 is($bs->{disp}->[1]->{filename}, 'tolower', 'body filename');
+is($bs->{lang}->[0], 'en_US', 'body lang');
 
 ok($bs = IMAP::BodyStructure->new('("message" "rfc822" ("name" "nice.name") NIL NIL "8bit" 269 (NIL "Part 5 of the outer message is itself an RFC822 message!" NIL NIL NIL NIL NIL NIL NIL NIL) ("text" "plain" ("charset" "ISO-8859-1") NIL NIL "quoted-printable" 58 1 NIL NIL NIL) 8 NIL NIL NIL)'), 'parse message/rfc822');
 is($bs->{type}, 'message/rfc822', 'message/rfc822 type');
@@ -63,7 +64,7 @@ is($bs->{bodystructure}->{params}->{charset}, 'ISO-8859-1', 'message/rfc822 body
 is($bs->{textlines}, 8, 'textlines of message/rfc822');
 is($bs->{part_id}, '1', 'part_id of a message/rfc822 part');
 
-ok($bs = IMAP::BodyStructure->new('(("text" "plain" ("charset" "utf-8") NIL NIL "8bit" 75 4 NIL ("inline" NIL) NIL)("text" "plain" ("charset" "us-ascii" "name" "tolower") NIL NIL "8bit" 84 5 NIL ("attachment" ("filename" "tolower")) NIL)("application" "x-tar-gz" ("name" "p5-HTML-Template-JIT.tar.gz") NIL NIL "base64" 1642 NIL ("attachment" ("filename" "p5-HTML-Template-JIT.tar.gz")) NIL)("image" "png" ("name" "=?KOI8-R?Q?=C4=C9=D3=CB=C9=CD=C7.png?=") NIL NIL "base64" 280 NIL ("attachment" ("filename" "=?KOI8-R?Q?=C4=C9=D3=CB=C9=CD=C7.png?=")) NIL) "mixed" ("boundary" "ExXT7PjY8AI4Hyfa") ("inline" NIL) NIL)'), 'multipart parse');
+ok($bs = IMAP::BodyStructure->new('(("text" "plain" ("charset" "utf-8") NIL NIL "8bit" 75 4 NIL ("inline" NIL) NIL)("text" "plain" ("charset" "us-ascii" "name" "tolower") NIL NIL "8bit" 84 5 NIL ("attachment" ("filename" "tolower")) ("tr_CY" "tr_TR"))("application" "x-tar-gz" ("name" "p5-HTML-Template-JIT.tar.gz") NIL NIL "base64" 1642 NIL ("attachment" ("filename" "p5-HTML-Template-JIT.tar.gz")) NIL)("image" "png" ("name" "=?KOI8-R?Q?=C4=C9=D3=CB=C9=CD=C7.png?=") NIL NIL "base64" 280 NIL ("attachment" ("filename" "=?KOI8-R?Q?=C4=C9=D3=CB=C9=CD=C7.png?=")) NIL) "mixed" ("boundary" "ExXT7PjY8AI4Hyfa") ("inline" NIL) NIL)'), 'multipart parse');
 is($bs->{type}, 'multipart/mixed', 'multipart type');
 is($bs->{params}->{boundary}, 'ExXT7PjY8AI4Hyfa', 'multipart boundary');
 is($bs->{disp}->[0], 'inline', 'multipart disp');
@@ -71,6 +72,7 @@ is($bs->{parts}->[0]->{type}, 'text/plain', 'multipart[0] type');
 is($bs->{parts}->[0]->{params}->{charset}, 'utf-8', 'multipart[0] charset');
 is($bs->{parts}->[1]->{disp}->[0], 'attachment', 'multipart[1] disp');
 is($bs->{parts}->[1]->{disp}->[1]->{filename}, 'tolower', 'multipart[1] filename');
+is($bs->{parts}->[1]->{lang}->[1], 'tr_TR', 'multipart[1] lang from a list');
 is($bs->{parts}->[2]->{encoding}, 'base64', 'multipart[2] encoding');
 is($bs->{parts}->[3]->{type}, 'image/png', 'multipart[3] type');
 ok(!exists $bs->{parts}->[3]->{textlines}, 'multipart[3] does not have textlines');

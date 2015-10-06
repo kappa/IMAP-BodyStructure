@@ -1,6 +1,9 @@
 Revision history for Perl extension IMAP::BodyStructure.
 
 {{$NEXT}}
+	- Add support for lists in "lang".
+	  RFC3501 supports that, I just never saw non-NIL in "lang".
+	  Submitted by: jonas@cpan.org
 
 1.02 2015-10-06T19:29:45Z
 	- Convert to Minilla, no functional change
