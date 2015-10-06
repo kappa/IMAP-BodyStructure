@@ -1,10 +1,8 @@
 #! /usr/bin/perl -w
 use strict;
 
-# $from-Id: FI-bodystructure.t,v 1.8 2004/07/06 13:53:26 kappa Exp $
-
 use Test::NoWarnings;
-use Test::More tests => 134;
+use Test::More tests => 132;
 
 BEGIN { use_ok('IMAP::BodyStructure'); }
 
@@ -162,9 +160,6 @@ is($bs->part_at('2.1')->size, 58, '... for size');
 is($bs->part_at('2.1'), $bs->{parts}->[1]->{bodystructure}->{bodystructure}, '... ref compare to direct access');
 
 ok(!defined $bs->part_at('2.2'), 'only 1 part inside message/rfc822');
-
-ok($bs = IMAP::BodyStructure->new(qq|(("text" "plain" ("charset" "KOI8-R") NIL NIL "8bit" 265 7 NIL NIL NIL)("application" "msword" ("name" {16}\r\nНа мне штаны.doc) NIL NIL "base64" 30130 NIL ("attachment" ("filename" {16}\r\nНа мне штаны.doc)) NIL) "mixed" ("boundary" "----yhZZhMGe-nrBcxM6r3syK6tCK:1045583399") NIL NIL)|), 'parse body with unencoded literal filenames');
-is($bs->parts(1)->filename, 'На мне штаны.doc', 'filename');
 
 #is($bs->parts(1)->from, 'Mail Delivery System <MAILER-DAEMON@capella.rambler.ru>', 'oop full from address');
 #is($bs->parts(1)->sender_name, 'Mail Delivery System', 'oop sender name');
