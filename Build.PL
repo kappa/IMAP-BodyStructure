@@ -14,7 +14,7 @@ use File::Basename;
 use File::Spec;
 
 my %args = (
-    license              => 'gpl_3',
+    license              => 'perl',
     dynamic_config       => 0,
 
     configure_requires => {

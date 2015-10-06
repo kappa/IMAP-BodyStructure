@@ -561,7 +561,7 @@ Each address is a hash of four elements:
 
 =item name
 
-The informal part, "A.U.Thor" from "A.U.Thor, E<lt>a.u.thor@somewhere.comE<gt>"
+The informal part, "A.U.Thor" from "A.U.Thor, <a.u.thor@somewhere.com>"
 
 =item sroute
 
@@ -730,16 +730,16 @@ This snippet selects a rendering routine for a message part.
 
 Shouldn't be any, as this is a simple parser of a standard structure.
 
+=head1 AUTHOR
+
+Alex Kapranoff <alex@kapranoff.ru>
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (C) 2004-2015 by Alex Kapranoff.
+This software is copyright (C) 2015 by Alex Kapranoff <alex@kapranoff.ru>.
 
 This is free software; you can redistribute it and/or modify it under
 the terms GNU General Public License version 3.
-
-=head1 AUTHOR
-
-Alex Kapranoff, E<lt>kappa@cpan.orgE<gt>
 
 =head1 SEE ALSO
 

@@ -305,16 +305,16 @@ This snippet selects a rendering routine for a message part.
 
 Shouldn't be any, as this is a simple parser of a standard structure.
 
+# AUTHOR
+
+Alex Kapranoff &lt;alex@kapranoff.ru>
+
 # COPYRIGHT AND LICENSE
 
-This software is copyright (C) 2005-2015 by Alex Kapranoff.
+This software is copyright (C) 2015 by Alex Kapranoff &lt;alex@kapranoff.ru>.
 
 This is free software; you can redistribute it and/or modify it under
 the terms GNU General Public License version 3.
-
-# AUTHOR
-
-Alex Kapranoff, &lt;kappa@cpan.org>
 
 # SEE ALSO
 

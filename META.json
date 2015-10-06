@@ -26,11 +26,6 @@
       ]
    },
    "prereqs" : {
-      "test" : {
-         "requires" : {
-            "Test::NoWarnings" : "0"
-         }
-      },
       "configure" : {
          "requires" : {
             "Module::Build" : "0.38"
@@ -49,6 +44,11 @@
          "requires" : {
             "perl" : "5.005"
          }
+      },
+      "test" : {
+         "requires" : {
+            "Test::NoWarnings" : "0"
+         }
       }
    },
    "release_status" : "unstable",
@@ -64,8 +64,5 @@
       }
    },
    "version" : "1.01",
-   "x_contributors" : [
-      "Alex Kapranoff <alex@kapranoff.ru>"
-   ],
    "x_serialization_backend" : "JSON::PP version 2.27203"
 }
