@@ -1,5 +1,7 @@
 Revision history for Perl extension IMAP::BodyStructure.
 
+{{$NEXT}}
+
 1.01
 	- INCOMPATIBLE CHANGE:
 		->part_at() with wrong part path now returns undef

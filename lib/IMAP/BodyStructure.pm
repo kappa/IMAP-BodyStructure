@@ -730,12 +730,16 @@ This snippet selects a rendering routine for a message part.
 
 Shouldn't be any, as this is a simple parser of a standard structure.
 
-The documentaion is my first attempt at documenting something in
-English and using POD. Almost certainly is not 100% ok.
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (C) 2004-2015 by Alex Kapranoff.
+
+This is free software; you can redistribute it and/or modify it under
+the terms GNU General Public License version 3.
 
 =head1 AUTHOR
 
-Alex Kapranoff, E<lt>kappa@rambler-co.ruE<gt>
+Alex Kapranoff, E<lt>kappa@cpan.orgE<gt>
 
 =head1 SEE ALSO
 
