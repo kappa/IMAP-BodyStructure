@@ -309,6 +309,10 @@ Shouldn't be any, as this is a simple parser of a standard structure.
 
 Alex Kapranoff &lt;alex@kapranoff.ru>
 
+# ACKNOWLEDGMENTS
+
+Jonas Liljegren contributed support for multivalued "lang" items.
+
 # COPYRIGHT AND LICENSE
 
 This software is copyright (C) 2015 by Alex Kapranoff &lt;alex@kapranoff.ru>.
